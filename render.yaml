@@ -1,19 +1,21 @@
 services:
+  # Node Web Service (the realtime game server)
   - type: web
     name: resistance-server
-    runtime: node            # (you can keep env: node, but runtime is the new field)
-    rootDirectory: server
+    runtime: node
+    rootDir: server
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /
     plan: free
-    autoDeploy: true
+    autoDeployTrigger: commit
 
+  # Static Site (the PWA client)
   - type: web
     name: resistance-client
-    runtime: static          # <-- static site
-    rootDirectory: client
-    buildCommand: ""         # no build step
-    publishPath: .           # serve the files in /client
+    runtime: static
+    # staticPublishPath is ALWAYS relative to the repo root
+    staticPublishPath: ./client
+    buildCommand: ""       # no build step
     plan: free
-    autoDeploy: true
+    autoDeployTrigger: commit
