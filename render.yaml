@@ -1,7 +1,7 @@
 services:
   - type: web
     name: resistance-server
-    env: node
+    runtime: node            # (you can keep env: node, but runtime is the new field)
     rootDirectory: server
     buildCommand: npm install
     startCommand: npm start
@@ -9,9 +9,11 @@ services:
     plan: free
     autoDeploy: true
 
-  - type: static_site
+  - type: web
     name: resistance-client
+    runtime: static          # <-- static site
     rootDirectory: client
-    buildCommand: ""
-    publishPath: .
+    buildCommand: ""         # no build step
+    publishPath: .           # serve the files in /client
+    plan: free
     autoDeploy: true
