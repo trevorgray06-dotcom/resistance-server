@@ -38,7 +38,12 @@ function connectSocket() {
   if (!state.serverUrl) {
     return render();
   }
-  socket = io(state.serverUrl, {transports:['websocket'], withCredentials:false});
+  socket = io(state.serverUrl, {
+  transports: ['websocket', 'polling'],  // allow fallback
+  path: '/socket.io',
+  withCredentials: false
+});
+
   socket.on('connect', ()=>{ console.log('connected'); render(); });
   socket.on('disconnect', ()=>{ console.log('disconnected'); });
   socket.on('error_message', msg => showToast(msg));
