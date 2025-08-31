@@ -1,6 +1,6 @@
 // Online multiplayer client for The Resistance
 // Set this to your deployed Socket.IO server origin (e.g., 'https://your-app.onrender.com')
-const SERVER_URL = localStorage.getItem('server_url') || ''; // prompt user if empty
+const SERVER_URL = 'https://resistance-server-2u0m.onrender.com/';
 
 // Basic constants
 const TEAM_SIZES = {5:[2,3,2,3,3],6:[2,3,4,3,4],7:[2,3,3,4,4],8:[3,4,4,5,5],9:[3,4,4,5,5],10:[3,4,4,5,5]};
