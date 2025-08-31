@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: resistance-server
+    env: node
+    rootDirectory: server
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
+  - type: static
+    name: resistance-client
+    rootDirectory: client
+    buildCommand: ""
+    publishPath: .
+    plan: free
+    autoDeploy: true
