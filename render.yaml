@@ -1,5 +1,5 @@
 services:
-  # Node Web Service (the realtime game server)
+  # Node Web Service (realtime server)
   - type: web
     name: resistance-server
     runtime: node
@@ -7,15 +7,13 @@ services:
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /
-    plan: free
     autoDeployTrigger: commit
+    plan: free   # ok for web services
 
-  # Static Site (the PWA client)
+  # Static Site (PWA client)
   - type: web
     name: resistance-client
     runtime: static
-    # staticPublishPath is ALWAYS relative to the repo root
-    staticPublishPath: ./client
-    buildCommand: ""       # no build step
-    plan: free
+    staticPublishPath: ./client   # folder to serve (relative to repo root)
+    buildCommand: ""              # no build step; remove this line if Render complains
     autoDeployTrigger: commit
